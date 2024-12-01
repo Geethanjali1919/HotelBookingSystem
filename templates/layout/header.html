@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default("Hotel Booking System") }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='assets/logo.jpg') }}" alt="Hotel Logo">
+            </a>
+        </div>
+        
+        <!-- Navigation Menu -->
+        <nav class="navigation">
+            <ul class="nav-list">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('rooms') }}">Rooms</a></li>
+                <li><a href="{{ url_for('offers') }}">Offers</a></li>
+                <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Authentication Buttons -->
+        <div class="auth-buttons">
+            {% if current_user.is_authenticated %}
+            <p>Welcome, {{ current_user.name }}</p>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Signup</a>
+            {% endif %}
+        </div>
+
+        <!-- Mobile Menu Button (for responsive) -->
+        <div class="menu-icon" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('rooms') }}">Rooms</a></li>
+            <li><a href="{{ url_for('offers') }}">Offers</a></li>
+            <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+    function toggleMenu() {
+        const menu = document.querySelector('.mobile-nav');
+        menu.classList.toggle('active');
+    }
+</script>
+
+

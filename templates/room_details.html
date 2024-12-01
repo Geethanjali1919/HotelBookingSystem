@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking System - Room Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include 'layout/header.html' %}
+
+    <section class="room-details">
+        <h2 class="animate__fadeIn">{{ room.name }}</h2>
+        <div class="room-gallery">
+            {% for image in room.images %}
+                <img src="{{ image }}" alt="Room Image">
+            {% endfor %}
+        </div>
+        <p>{{ room.description }}</p>
+        <p><strong>Price per night:</strong> ${{ room.price }}</p>
+        <p><strong>Amenities:</strong> {{ room.amenities }}</p>
+        <a href="{{ url_for('booking', room_id=room.room_id) }}" class="btn-book">Book Now</a>
+    </section>
+
+    {% include 'layout/footer.html' %}
+</body>
+</html>

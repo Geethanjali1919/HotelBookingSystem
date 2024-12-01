@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking System - Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include 'layout/header.html' %}
+
+    <section class="booking-form">
+        <h2>Booking for {{ room.name }}</h2>
+        <form action="{{ url_for('booking', room_id=room.room_id) }}" method="POST">
+            <input type="hidden" name="room_id" value="{{ room.room_id }}">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <label for="check_in">Check-in Date:</label>
+            <input type="date" id="check_in" name="check_in" required>
+            <label for="check_out">Check-out Date:</label>
+            <input type="date" id="check_out" name="check_out" required>
+
+            <h3>Payment Information</h3>
+            <label for="card_number">Card Number:</label>
+            <input type="text" id="card_number" name="card_number" required>
+            <label for="expiry_date">Expiry Date:</label>
+            <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YY" required>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required>
+
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </section>
+
+    {% include 'layout/footer.html' %}
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking System - Rooms</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include 'layout/header.html' %}
+
+    <div class="filter-bar">
+        <form method="GET">
+            <select name="room_type">
+                <option value="">Room Type</option>
+                <option value="single">Single</option>
+                <option value="double">Double</option>
+                <option value="suite">Suite</option>
+            </select>
+            <input type="number" name="price_min" placeholder="Min Price">
+            <input type="number" name="price_max" placeholder="Max Price">
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+
+    <section class="room-listings">
+        <h2>Available Rooms</h2>
+        <div class="rooms-container">
+            {% for room in rooms %}
+                <div class="room">
+                    <img src="{{ room.image_url }}" alt="{{ room.name }}">
+                    <h3>{{ room.name }}</h3>
+                    <p>{{ room.description }}</p>
+                    <p>${{ room.price }} per night</p>
+                    <a href="{{ url_for('room_details', room_id=room.room_id) }}">Book Now</a>
+                    <a href="{{ url_for('room_details', room_id=room.room_id) }}">View Details</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% include 'layout/footer.html' %}
+</body>
+</html>

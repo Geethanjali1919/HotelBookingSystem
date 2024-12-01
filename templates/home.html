@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking System - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include 'layout/header.html' %}
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Welcome to Luxury Stays</h1>
+            <p>Experience the finest accommodations and impeccable hospitality.</p>
+            <a href="{{ url_for('rooms') }}" class="btn hero-btn">Book Your Stay</a>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <form action="{{ url_for('rooms') }}" method="GET">
+            <input type="text" name="destination" placeholder="Destination" required>
+            <input type="date" name="check_in" placeholder="Check-in" required>
+            <input type="date" name="check_out" placeholder="Check-out" required>
+            <input type="number" name="guests" placeholder="Guests" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Featured Rooms Section -->
+    <section class="featured-rooms">
+        <h2>Featured Rooms</h2>
+        <div class="rooms-container">
+            {% for room in rooms %}
+                <div class="room">
+                    <img src="{{ room.image_url }}" alt="{{ room.name }}">
+                    <h3>{{ room.name }}</h3>
+                    <p>{{ room.description }}</p>
+                    <p><strong>Price:</strong> ${{ room.price }} per night</p>
+                    <a href="{{ url_for('room_details', room_id=room.room_id) }}" class="btn">View Details</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+        <h2>Why Choose Us</h2>
+        <div class="features">
+            <div class="feature">
+                <img src="{{ url_for('static', filename='assets/feature1.jpg') }}" alt="Luxurious Rooms">
+                <h3>Luxurious Rooms</h3>
+                <p>Experience unmatched comfort and style in our elegantly designed rooms.</p>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='assets/feature2.jpg') }}" alt="World-Class Dining">
+                <h3>World-Class Dining</h3>
+                <p>Savor gourmet meals crafted by our top chefs at exclusive restaurants.</p>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='assets/feature3.jpg') }}" alt="Prime Locations">
+                <h3>Prime Locations</h3>
+                <p>Stay close to major attractions and enjoy breathtaking views.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers Section -->
+    <section class="special-offers">
+        <h2>Special Offers</h2>
+        <p>Take advantage of our exclusive deals and packages to make your stay even more memorable.</p>
+        <a href="{{ url_for('offers') }}" class="btn">Explore Offers</a>
+    </section>
+
+    {% include 'layout/footer.html' %}
+</body>
+</html>

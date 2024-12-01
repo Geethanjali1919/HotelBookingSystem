@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking System - Confirmation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include 'layout/header.html' %}
+
+    <section class="confirmation">
+        <h1>Booking Confirmed!</h1>
+        <p>Thank you, {{ booking.UserID }}. Your booking is confirmed.</p>
+        <p><strong>Booking ID:</strong> {{ booking.BookingID }}</p>
+        <p><strong>Room:</strong> {{ room.name }}</p>
+        <p><strong>Check-in:</strong> {{ booking.CheckIn }}</p>
+        <p><strong>Check-out:</strong> {{ booking.CheckOut }}</p>
+        <p><strong>Total Price:</strong> ${{ total_price }}</p>
+        <a href="#" onclick="window.print()">Print Confirmation</a>
+        <p>An email has been sent to {{ booking.UserID }} with the details.</p>
+    </section>
+
+    {% include 'layout/footer.html' %}
+</body>
+</html>

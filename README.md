@@ -25,7 +25,7 @@ The **Hotel Management System** showcases the power of cloud-native design in en
 To install the project locally:
 
 1. Clone the **Hotel Booking System** repository.
-2. Upload the private key to connect the EC2 instance with SSH in the `/.aws/credentials` file.
+2. Upload the .ppk file to connect the EC2 instance with SSH in the `/.aws/credentials` file.
 3. After modifying the credentials, run the following command to start the application:
 
    ```bash

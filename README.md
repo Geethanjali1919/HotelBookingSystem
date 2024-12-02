@@ -30,3 +30,4 @@ To install the project locally:
 
    ```bash
    $ gunicorn --bind 0.0.0.0:5000 app:app
+Now open the Public URL: http://54.145.75.38:5000/
